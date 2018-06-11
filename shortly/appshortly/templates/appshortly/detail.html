@@ -1,0 +1,16 @@
+{% extends "appshortly/base.html" %}
+
+{% block title %} Shortly: Details by {{ url.url }}{% endblock %}
+
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+
+{% block body %}
+        <div>
+            <p> Full URL: {{ url.url }} </p>
+            <p> Short URL: <a href="/{{url.id}}">{{ host_name }}/{{url.id}}</a> </p>
+            <p> Clicked: {{ url.clicked }} count</p>
+        </div>
+        {{ ur}}
+{% endblock %}

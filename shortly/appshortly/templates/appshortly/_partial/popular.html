@@ -1,0 +1,11 @@
+<h2> Most popular url:</h2>
+<div style="min-height:200px; margin-bottom:30px; border-bottom:2px solid darkblue;">
+    <ul>
+    {% for url in urls %}
+        <li style="padding-bottom:5px;">
+            <a href="/{{ url.id }}">{{ url.url }}</a> <br/>
+            <small>Clicked: {{ url.clicked }} <a href="/{{ url.id }}/detail">Detail </a> </small>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

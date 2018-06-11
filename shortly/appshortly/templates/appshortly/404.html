@@ -1,0 +1,12 @@
+{% extends "appshortly/base.html" %}
+
+{% block title %} Shortly: Not Found {% endblock %}
+
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+
+{% block body %}
+    <h3>Not found. Sorry!</h3>
+{% endblock %}
+
