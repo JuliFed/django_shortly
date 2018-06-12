@@ -4,31 +4,23 @@ from .utils import helpers
 
 
 def index(request):
-    if not Shortly.objects.first():
-        return render(request, 'appshortly/index.html', {"urls": []})
-
     urls = Shortly.objects.order_by('-clicked')[:7]
     return render(request, 'appshortly/index.html', {"urls": urls})
 
 
 def create_new_url(request):
     if request.method == 'POST':
-        unique_link = Shortly.objects.filter(url=request.POST.get('url_link')).first()
-        if unique_link:
-            return redirect('/%s' % unique_link.id)
-
-        if helpers.is_valid_url(request.POST.get('url_link')):
-            url = Shortly(url=request.POST.get('url_link'))
-            url.save()
-            return render(request, 'appshortly/detail.html', {"url": url, "host_name": request.get_host()})
+        if Shortly.objects.filter(url=request.POST.get('url_link')).exists():
+            url = Shortly.objects.filter(url=request.POST.get('url_link')).first()
+            return redirect('/%s' % url.id)
         else:
-            # TODO - Передать ошибку !
-            if not Shortly.objects.first():
-                return render(request, 'appshortly/index.html', {"urls": []})
-
-            urls = Shortly.objects.order_by('-clicked')[:7]
-            return render(request, 'appshortly/index.html', {"urls": urls, "error": "Can't create new short link. Invalid URL."})
-
+            if helpers.is_valid_url(request.POST.get('url_link')):
+                url = Shortly(url=request.POST.get('url_link'))
+                url.save()
+                return render(request, 'appshortly/detail.html', {"url": url, "host_name": request.get_host()})
+            else:
+                urls = Shortly.objects.order_by('-clicked')[:7]
+                return render(request, 'appshortly/index.html', {"urls": urls, "error": "Can't create new short link. Invalid URL."})
     return redirect('/')
 
 
