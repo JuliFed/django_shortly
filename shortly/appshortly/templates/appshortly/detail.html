@@ -8,15 +8,15 @@
         <div class="panel-body">
             <div class="input-group">
                 <span class="input-group-addon" style="min-width:100px;">Full URL:</span>
-                <input type="text" class="form-control" value="{{ url.url }}">
+                <input type="text" class="form-control" value="{{ url.url }}" readonly>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"  style="min-width:100px;">Short URL:</span>
-                <input type="text" class="form-control" value="{{ host_name }}/{{url.id}}">
+                <input type="text" class="form-control" value="{{ host_name }}/{{url.id}}"  readonly>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"  style="min-width:100px;">Clicked:</span>
-                <input type="text" class="form-control" value="{{ url.clicked }} count">
+                <input type="text" class="form-control" value="{{ url.clicked }} count" readonly>
             </div>
 
         </div>
