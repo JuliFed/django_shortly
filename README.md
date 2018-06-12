@@ -1,4 +1,4 @@
-#Задание
+#Задание#
 
 Написать сокращалку ссылок на Django.
 
@@ -15,7 +15,7 @@
 Workflow: Пользователь создает сокращенную ссылку -> заходит по этой ссылке -> его редиректит на URL который связан с сокращенным.
 
 
-###For install
+###For install###
 1) pip install -r shortly/requirements.txt
 2) cd shortly
 3) python manage.py migrate
