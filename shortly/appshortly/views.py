@@ -1,36 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shortly
-from urllib.parse import urlparse
+from .utils import helpers
 
-def index(request, error=None):
-    print('error', error)
+
+def index(request):
     if not Shortly.objects.first():
         return render(request, 'appshortly/index.html', {"urls": []})
 
-    urls = Shortly.objects.order_by('-clicked')[:10]
-    return render(request, 'appshortly/index.html', {"urls": urls, "error": error})
+    urls = Shortly.objects.order_by('-clicked')[:7]
+    return render(request, 'appshortly/index.html', {"urls": urls})
 
-
-def is_valid_url(url):
-    parts = urlparse(url)
-    return parts.scheme in ('http', 'https')
 
 def create_new_url(request):
     if request.method == 'POST':
-
         unique_link = Shortly.objects.filter(url=request.POST.get('url_link')).first()
         if unique_link:
             return redirect('/%s' % unique_link.id)
 
-        if is_valid_url(request.POST.get('url_link')):
+        if helpers.is_valid_url(request.POST.get('url_link')):
             url = Shortly(url=request.POST.get('url_link'))
             url.save()
-            return render(request, 'appshortly/detail.html', {"url": url, "host_name": request.build_absolute_uri()})
+            return render(request, 'appshortly/detail.html', {"url": url, "host_name": request.get_host()})
         else:
             # TODO - Передать ошибку !
-            return redirect('/')
+            if not Shortly.objects.first():
+                return render(request, 'appshortly/index.html', {"urls": []})
+
+            urls = Shortly.objects.order_by('-clicked')[:7]
+            return render(request, 'appshortly/index.html', {"urls": urls, "error": "Can't create new short link. Invalid URL."})
 
     return redirect('/')
+
 
 def view_url(request, url_id):
     url = get_object_or_404(Shortly, id=url_id)

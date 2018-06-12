@@ -1,22 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
      <title>Shortly | {% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
 </head>
 <body>
+    {% include 'appshortly/_partial/header.html' %}
     <div class="container">
-        <div style="border-bottom: 2px solid darkblue; padding-bottom:20px;margin-bottom:20px;">
-        <h1> <a href="/">Shortly</a> with Django</h1>
-        </div>
         {% block popular %}
-
         {% endblock %}
 
-        {% block body %}
+        {% if error %}
+            <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
 
+        {% block body %}
         {% endblock %}
     </div>
 </body>

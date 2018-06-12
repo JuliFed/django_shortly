@@ -1,16 +1,24 @@
 {% extends "appshortly/base.html" %}
-
 {% block title %} Shortly: Details by {{ url.url }}{% endblock %}
-
-{% if error %}
-    <p class=error><strong>Error:</strong> {{ error }}
-{% endif %}
-
 {% block body %}
-        <div>
-            <p> Full URL: {{ url.url }} </p>
-            <p> Short URL: <a href="/{{url.id}}">{{ host_name }}/{{url.id}}</a> </p>
-            <p> Clicked: {{ url.clicked }} count</p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>Detail:</h2>
         </div>
-        {{ ur}}
+        <div class="panel-body">
+            <div class="input-group">
+                <span class="input-group-addon" style="min-width:100px;">Full URL:</span>
+                <input type="text" class="form-control" value="{{ url.url }}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"  style="min-width:100px;">Short URL:</span>
+                <input type="text" class="form-control" value="{{ host_name }}/{{url.id}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"  style="min-width:100px;">Clicked:</span>
+                <input type="text" class="form-control" value="{{ url.clicked }} count">
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

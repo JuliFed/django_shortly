@@ -1,11 +1,17 @@
-<h2> Most popular url:</h2>
-<div style="min-height:200px; margin-bottom:30px; border-bottom:2px solid darkblue;">
-    <ul>
-    {% for url in urls %}
-        <li style="padding-bottom:5px;">
-            <a href="/{{ url.id }}">{{ url.url }}</a> <br/>
-            <small>Clicked: {{ url.clicked }} <a href="/{{ url.id }}/detail">Detail </a> </small>
-        </li>
-    {% endfor %}
-    </ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2> Most popular url:</h2>
+    </div>
+    <div class="panel-body">
+        <ul>
+        {% for url in urls %}
+            <li style="padding-bottom:5px;">
+                <button type="button" class="btn btn-primary"><span class="badge">{{ url.clicked }}</span><a href="/{{ url.id }}/detail" style="color:#fff;"> Detail</a></button>
+                <a href="/{{ url.id }}">{{ url.url }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </div>
+
+

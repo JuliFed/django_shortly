@@ -1,6 +1,7 @@
-#Задание#
+Задание
+================
 
-Написать сокращалку ссылок на Django.
+**Написать сокращалку ссылок на Django.**
 
 Должна быть возможность создать сокращенную версию ссылки. Т. е. пользователь вводит URL, а приложение отдает сокращенную ссылку. Для сокращения можно использовать рандомно сгенерируемую строку, но что бы эти строки не повторялись. 
 
@@ -14,12 +15,12 @@
 
 Workflow: Пользователь создает сокращенную ссылку -> заходит по этой ссылке -> его редиректит на URL который связан с сокращенным.
 
-
-###For install###
-1) pip install -r shortly/requirements.txt
-2) cd shortly
-3) python manage.py migrate
-4) python manage.py runserver
+Install and run
+----------------
+    pip install -r shortly/requirements.txt
+    cd shortly
+    python manage.py migrate
+    python manage.py runserver
 
 
 
