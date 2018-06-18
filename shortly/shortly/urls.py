@@ -18,15 +18,19 @@ from django.urls import path
 from django.views.defaults import page_not_found
 from django.utils.functional import curry
 from appshortly import views
+from django.conf.urls import include, url
 
 handler404 = curry(page_not_found, template_name='appshortly/404.html')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('<int:url_id>', views.detail_url),
-    path('<int:url_id>/detail', views.view_url),
-    path('create_short_url', views.create_new_url),
+    # path('/', views.index),
+    path('', views.ShortlyView.as_view()),
+    # url(r'/', views.ShortlyView.as_view()),
+    path('<int:url_id>', views.RedirectByShortId.as_view()),
+    path('<int:url_id>/detail', views.ShortlyView.as_view()),
+    # path('<int:url_id>/detail', views.view_url),
+    # path('create_short_url', views.create_new_url),
 
 ]

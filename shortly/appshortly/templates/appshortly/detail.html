@@ -9,16 +9,16 @@
         </div>
         <div class="panel-body">
             <div class="input-group">
-                <span class="input-group-addon" style="min-width:100px;">Full URL:</span>
-                <input type="text" class="form-control" value="{{ url.url }}" readonly>
+                <span class="input-group-addon" style="min-width:100px;">{{form.url.label}}</span>
+                <input type="text" class="form-control" value="{{ form.url.value }}" readonly name="url">
             </div>
             <div class="input-group">
                 <span class="input-group-addon"  style="min-width:100px;">Short URL:</span>
-                <input type="text" class="form-control" value="{{ host_name }}/{{url.id}}"  readonly>
+                <input type="text" class="form-control" value="{{ host_name }}/{{ url_id }}"  readonly>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"  style="min-width:100px;">Clicked:</span>
-                <input type="text" class="form-control" value="{{ url.clicked }} count" readonly>
+                <input type="text" class="form-control" value="{{ form.clicked.value }} count" readonly>
             </div>
 
         </div>
